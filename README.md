@@ -38,7 +38,7 @@ Este proyecto tiene como objetivo facilitar una reinstalación limpia de VMware 
 ## Archivo principal
 
 ```text
-VMware_Clean_SelfExtract_Fix.bat
+VMware_Clean.bat
 ```
 
 ---
@@ -58,7 +58,7 @@ VMware_Clean_SelfExtract_Fix.bat
 1. Descarga el archivo:
 
 ```text
-VMware_Clean_SelfExtract_Fix.bat
+VMware_Clean.bat
 ```
 
 2. Haz clic derecho sobre el archivo.
@@ -156,18 +156,6 @@ Este script puede ser útil cuando:
 - Persisten servicios como `VMnetDHCP`, `VMware NAT Service` o `VMAuthdService`.
 - Quedan adaptadores virtuales VMnet después de desinstalar.
 - Se requiere una instalación limpia desde cero.
-
----
-
-## Estructura sugerida del repositorio
-
-```text
-vmware-workstation-cleaner/
-│
-├── VMware_Clean_SelfExtract_Fix.bat
-├── README.md
-└── LICENSE
-```
 
 ---
 
