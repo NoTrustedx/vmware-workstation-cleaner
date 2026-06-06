@@ -31,7 +31,6 @@ Este proyecto tiene como objetivo facilitar una reinstalación limpia de VMware 
 
 ## Archivo principal
 
-```text
 VMware_Clean.bat
 
 
