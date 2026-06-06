@@ -33,3 +33,78 @@ Este proyecto tiene como objetivo facilitar una reinstalación limpia de VMware 
 
 ```text
 VMware_Clean.bat
+
+
+## Requisitos
+Windows 10 o Windows 11.
+Permisos de administrador.
+PowerShell disponible en el sistema.
+VMware Workstation Pro cerrado antes de ejecutar el script.
+
+## Uso
+Descarga el archivo:
+VMware_Clean.bat
+
+Haz clic derecho sobre el archivo.
+Selecciona:
+Ejecutar como administrador
+Cuando el script solicite confirmación, escribe:
+
+## LIMPIAR
+Espera a que finalice el proceso.
+Reinicia Windows antes de instalar nuevamente VMware Workstation Pro.
+Validación posterior
+
+Después de reiniciar, abre CMD como administrador y ejecuta:
+
+sc query type= service state= all | findstr /i "vmware vmnet"
+reg query "HKLM\SOFTWARE\VMware, Inc."
+reg query "HKLM\SOFTWARE\WOW6432Node\VMware, Inc."
+where vmware.exe
+
+Si no aparecen servicios, claves o binarios relacionados, el sistema quedó listo para una instalación limpia.
+
+Logs y backups
+
+Durante la ejecución, el script crea una carpeta similar a:
+
+C:\VMware_Cleanup_YYYYMMDD_HHMMSS
+
+Dentro se generan:
+
+VMware_Cleanup.log
+RegistryBackup\
+
+El directorio RegistryBackup contiene copias .reg de las claves eliminadas, cuando estas existían.
+
+Protección de máquinas virtuales
+
+Por seguridad, el script no elimina las máquinas virtuales del usuario.
+
+La variable interna se encuentra configurada así:
+
+$RemoveVirtualMachines = $false
+
+Solo debe cambiarse a true si se desea eliminar manualmente la carpeta:
+
+C:\Users\<usuario>\Documents\Virtual Machines
+Advertencia
+
+Este script modifica servicios, drivers, archivos del sistema y claves de registro. Úsalo únicamente si entiendes el impacto de una limpieza profunda.
+
+Antes de ejecutarlo se recomienda:
+
+Cerrar VMware Workstation Pro.
+Apagar todas las máquinas virtuales.
+Crear un punto de restauración.
+Respaldar máquinas virtuales importantes.
+Revisar el script antes de usarlo en equipos productivos.
+Casos de uso
+
+Este script puede ser útil cuando:
+
+VMware Workstation Pro no se desinstala correctamente.
+La instalación nueva falla por residuos de versiones anteriores.
+Persisten servicios como VMnetDHCP, VMware NAT Service o VMAuthdService.
+Quedan adaptadores virtuales VMnet después de desinstalar.
+Se requiere una instalación limpia desde cero.
